@@ -1,0 +1,10 @@
+﻿@model TaskAddViewModel
+<h2>Yeni Görev Oluştur</h2>
+<hr />
+<form asp-controller="Home" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Task Name">
+    </div>
+    <button type="submit" class="btn btn-success">Oluştur</button>
+</form>

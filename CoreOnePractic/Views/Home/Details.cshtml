@@ -1,0 +1,10 @@
+﻿@model TaskEntity
+<h2>@Model.Name Görevin Detayları</h2>
+<hr />
+<ol class="list-group list-group-numbered">
+    <li class="list-group-item"><strong>ID:</strong>@Model.Id</li>
+    <li class="list-group-item"><strong>Name:</strong>@Model.Name</li>
+    <li class="list-group-item"><strong>Status:</strong><span class="badge text-bg-@(Model.Status == true ? "success" : "danger")">@Model.Status</span></li>
+</ol>
+<hr />
+<a asp-controller="Home" asp-action="Index" class="btn btn-info">Geri Dön</a>

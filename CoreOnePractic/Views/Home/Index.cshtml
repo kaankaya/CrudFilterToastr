@@ -1,0 +1,68 @@
+﻿@model List<TaskListViewModel>
+<h2>Yönetim Paneli</h2>
+<div class="row mb-3">
+    <div class="d-flex align-items-center">
+        <!-- Yeni Ekle Butonu -->
+        <a asp-controller="Home" asp-action="Create" class="btn btn-primary me-2">Yeni Ekle</a>
+
+        <!-- Dropdown Menüsü -->
+        <form method="get" asp-controller="Home" asp-action="Index">
+            @* Filtreleme Menüsü *@
+            @{
+                var statusFilter = Context.Request.Query["statusFilter"].ToString();
+            }
+            @*OnChange bir butona basmadan otomatik olarak form un submit edilmesini sağlar.Yani değer değiştiği anda submit et.Name olarak verdiğimiz statusFilter Parametre olarak gönderdiğimiz*@
+            @*Daha sonra if ile parametredeki değeri kontrol ediyoruz controller da belirlediğimiz*@
+            <select class="form-select" name="statusFilter" onchange="this.form.submit()">
+                <option value="">Tüm Görevler</option>
+                @if (statusFilter == "completed")
+                {
+                    @:
+                    <option value="completed" selected>Tamamlanan</option>
+                }
+                else
+                {
+                    @:
+                    <option value="completed">Tamamlanan</option>
+                }
+                @if (statusFilter == "incomplete")
+                {
+                    @:
+                    <option value="incomplete" selected>Tamamlanmamış</option>
+                }
+                else
+                {
+                    @:
+                    <option value="incomplete">Tamamlanmamış</option>
+                }
+            </select>
+        </form>
+    </div>
+</div>
+
+
+<hr />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>İşlemler</th>
+        </thead>
+        <tbody>
+        @foreach(var task in Model)
+        {
+            <tr>
+                <td>@task.Id</td>
+                <td>@task.Name</td>
+                <td><span class="badge text-bg-@(task.Status == true ? "success" : "danger")">@task.Status</span></td>
+                <td>
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@task.Id" class="btn btn-sm btn-info">Detaylar</a>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@task.Id" class="btn btn-sm btn-warning">Düzenle</a>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@task.Id" class="btn btn-sm btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
