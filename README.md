@@ -7,7 +7,6 @@ This project is a CRUD (Create, Read, Update, Delete) application built with ASP
 
 ## Technologies Used:
 - **ASP.NET Core**: Backend framework for building the application.
-- **Entity Framework Core**: ORM for database operations.
 - **Bootstrap 5**: Frontend framework for responsive design.
 - **Toastr.js**: Used for displaying notifications after CRUD operations.
 - **jQuery**: For form handling and integrating with Toastr.
